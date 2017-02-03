@@ -8,7 +8,6 @@ import com.jenzz.pojobuilder.processor.expections.UnnamedPackageException;
 import com.jenzz.pojobuilder.processor.rules.NonAbstractClassRule;
 import com.jenzz.pojobuilder.processor.rules.NonPrivateFieldsRule;
 import com.jenzz.pojobuilder.processor.rules.NonPrivateNoArgsConstructorRule;
-import com.jenzz.pojobuilder.processor.rules.NonStaticFinalFieldsRule;
 import com.jenzz.pojobuilder.processor.rules.Rule;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.TypeSpec;
@@ -38,8 +37,7 @@ public class BuilderProcessor extends AbstractProcessor {
             new Rule[]{
                     new NonAbstractClassRule(),
                     new NonPrivateNoArgsConstructorRule(),
-                    new NonPrivateFieldsRule(),
-                    new NonStaticFinalFieldsRule()
+                    new NonPrivateFieldsRule()
             };
 
     private final ElementValidator elementValidator = new ElementValidator(RULES);

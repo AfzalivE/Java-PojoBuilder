@@ -5,6 +5,7 @@ import com.squareup.javapoet.ClassName;
 import java.util.ArrayList;
 import java.util.List;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 
 import static com.squareup.javapoet.ClassName.get;
@@ -38,7 +39,8 @@ class BuilderAnnotatedClass {
     List<Element> list = new ArrayList<>();
     for (Element element : fieldsIn(classElement.getEnclosedElements())) {
       boolean isIgnored = element.getAnnotation(Ignore.class) != null;
-      if (!isIgnored) {
+      boolean isStaticFinal = element.getModifiers().contains(Modifier.STATIC) && element.getModifiers().contains(Modifier.FINAL);
+      if (!isIgnored || isStaticFinal) {
         list.add(element);
       }
     }
