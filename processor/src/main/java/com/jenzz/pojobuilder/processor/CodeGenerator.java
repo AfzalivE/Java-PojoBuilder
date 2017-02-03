@@ -5,6 +5,7 @@ import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
+
 import javax.lang.model.element.Element;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.TypeMirror;
@@ -13,8 +14,7 @@ import static com.jenzz.pojobuilder.processor.Utils.decapitalize;
 import static com.squareup.javapoet.MethodSpec.methodBuilder;
 import static com.squareup.javapoet.TypeName.get;
 import static com.squareup.javapoet.TypeSpec.classBuilder;
-import static javax.lang.model.element.Modifier.FINAL;
-import static javax.lang.model.element.Modifier.PRIVATE;
+import static javax.lang.model.element.Modifier.PROTECTED;
 import static javax.lang.model.element.Modifier.PUBLIC;
 import static javax.lang.model.element.Modifier.STATIC;
 import static javax.lang.model.type.TypeKind.DECLARED;
@@ -36,7 +36,7 @@ final class CodeGenerator {
   TypeSpec brewJava() {
     String className = classNameGenerator.generateBuilderClassString(builderAnnotatedClass);
     TypeSpec.Builder builder = classBuilder(className)
-        .addModifiers(PUBLIC, FINAL)
+        .addModifiers(PUBLIC)
         .addMethod(constructor())
         .addMethod(fromConstructor());
 
@@ -103,7 +103,7 @@ final class CodeGenerator {
 
   private FieldSpec field(Element field) {
     return FieldSpec.builder(get(field.asType()), field.getSimpleName().toString())
-        .addModifiers(PRIVATE)
+        .addModifiers(PROTECTED)
         .build();
   }
 
