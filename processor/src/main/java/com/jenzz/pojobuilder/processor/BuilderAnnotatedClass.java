@@ -40,7 +40,7 @@ class BuilderAnnotatedClass {
     for (Element element : fieldsIn(classElement.getEnclosedElements())) {
       boolean isIgnored = element.getAnnotation(Ignore.class) != null;
       boolean isStaticFinal = element.getModifiers().contains(Modifier.STATIC) && element.getModifiers().contains(Modifier.FINAL);
-      if (!isIgnored || isStaticFinal) {
+      if (!isIgnored || !isStaticFinal) {
         list.add(element);
       }
     }
