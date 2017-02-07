@@ -14,7 +14,6 @@ import static com.jenzz.pojobuilder.processor.Utils.decapitalize;
 import static com.squareup.javapoet.MethodSpec.methodBuilder;
 import static com.squareup.javapoet.TypeName.get;
 import static com.squareup.javapoet.TypeSpec.classBuilder;
-import static javax.lang.model.element.Modifier.PROTECTED;
 import static javax.lang.model.element.Modifier.PUBLIC;
 import static javax.lang.model.element.Modifier.STATIC;
 import static javax.lang.model.type.TypeKind.DECLARED;
@@ -103,7 +102,7 @@ final class CodeGenerator {
 
   private FieldSpec field(Element field) {
     return FieldSpec.builder(get(field.asType()), field.getSimpleName().toString())
-        .addModifiers(PROTECTED)
+        .addModifiers(PUBLIC)
         .build();
   }
 
